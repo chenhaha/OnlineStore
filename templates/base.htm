@@ -1,0 +1,110 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Book Store</title>
+<link rel="stylesheet" type="text/css" href={% static "css/style.css"%} />
+</head>
+<body>
+<div id="wrap">
+  <div class="header">
+    <div class="logo"><a href="index.html"><img src={% static "images/logo.gif"%} alt="" title="" border="0" /></a></div>
+    {% block menu %}{% endblock %}
+  </div>
+  <div class="center_content">
+    <div class="left_content">
+      {% block left_content %}{% endblock %}
+    </div>
+    <!--end of left content-->
+    <div class="right_content">
+      <form action="" method="post">
+          <table>
+           <ul class="nav navbar-nav navbar-right">
+                {% if user %}
+                    <li><p class="navbar-text">{{ user.username }}欢迎你&nbsp;&nbsp;<span id="base_name">{{ user.myuser.nickname }}</span></p>
+                    </li>
+                    <li><a href="{% url 'category' %}">注销</a></li>
+                    <li><a href="{% url 'contact' %}">修改密码</a></li>
+                {% else %}
+                              <label for="id_user_name" class="col-md-3 control-label">用户名：</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="id_user_name" required name="username"
+                                   autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_password" class="col-md-3 control-label">密码：</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" required name="password" id="id_password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 col-md-offset-4">
+                            <button class="btn btn btn-primary btn-block" type="submit">登陆</button>
+                {% endif %}
+            </ul>
+          </table>
+
+      </form>
+      <div class="cart">
+        <div class="title"><span class="title_icon"><img src={% static "images/cart.gif"%} alt="" title="" /></span>My cart</div>
+        <div class="home_cart_content"> 3 x items | <span class="red">TOTAL: 100$</span> </div>
+        <a href="cart.htm" class="view_cart">view cart</a> </div>
+      <div class="title"><span class="title_icon"><img src={% static "images/bullet3.gif"%} alt="" title="" /></span>About Our Store</div>
+      <div class="about">
+        <p> <img src={% static "images/about.gif"%} alt="" title="" class="right" /> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. </p>
+      </div>
+      <div class="right_box">
+        <div class="title"><span class="title_icon"><img src={% static "images/bullet4.gif"%} alt="" title="" /></span>Promotions</div>
+        <div class="new_prod_box"> <a href="details.htm">product name</a>
+          <div class="new_prod_bg"> <span class="new_icon"><img src={% static "images/promo_icon.gif"%} alt="" title="" /></span> <a href="details.htm"><img src={% static "images/thumb1.gif"%} alt="" title="" class="thumb" border="0" /></a> </div>
+        </div>
+        <div class="new_prod_box"> <a href="details.htm">product name</a>
+          <div class="new_prod_bg"> <span class="new_icon"><img src={% static "images/promo_icon.gif"%} alt="" title="" /></span> <a href="details.htm"><img src={% static "images/thumb2.gif"%} alt="" title="" class="thumb" border="0" /></a> </div>
+        </div>
+        <div class="new_prod_box"> <a href="details.htm">product name</a>
+          <div class="new_prod_bg"> <span class="new_icon"><img src={% static "images/promo_icon.gif"%} alt="" title="" /></span> <a href="details.htm"><img src={% static "images/thumb3.gif"%} alt="" title="" class="thumb" border="0" /></a> </div>
+        </div>
+      </div>
+      <div class="right_box">
+        <div class="title"><span class="title_icon"><img src={% static "images/bullet5.gif"%} alt="" title="" /></span>Categories</div>
+        <ul class="list">
+          <li><a href="#">accesories</a></li>
+          <li><a href="#">books gifts</a></li>
+          <li><a href="#">specials</a></li>
+          <li><a href="#">hollidays gifts</a></li>
+          <li><a href="#">accesories</a></li>
+          <li><a href="#">books gifts</a></li>
+          <li><a href="#">specials</a></li>
+          <li><a href="#">hollidays gifts</a></li>
+          <li><a href="#">accesories</a></li>
+          <li><a href="#">books gifts</a></li>
+          <li><a href="#">specials</a></li>
+        </ul>
+        <div class="title"><span class="title_icon"><img src={% static "images/bullet6.gif"%} alt="" title="" /></span>Partners</div>
+        <ul class="list">
+          <li><a href="#">accesories</a></li>
+          <li><a href="#">books gifts</a></li>
+          <li><a href="#">specials</a></li>
+          <li><a href="#">hollidays gifts</a></li>
+          <li><a href="#">accesories</a></li>
+          <li><a href="#">books gifts</a></li>
+          <li><a href="#">specials</a></li>
+          <li><a href="#">hollidays gifts</a></li>
+          <li><a href="#">accesories</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--end of right content-->
+    <div class="clear"></div>
+  </div>
+  <!--end of center content-->
+  <div class="footer">
+    <div class="left_footer"><img src={% static "images/footer_logo.gif"%} alt="" title="" /><br />
+      </div>
+    <div class="right_footer"> <a href="#">home</a> <a href="#">about us</a> <a href="#">services</a> <a href="#">privacy policy</a> <a href="#">contact us</a> </div>
+  </div>
+</div>
+</body>
+</html>
