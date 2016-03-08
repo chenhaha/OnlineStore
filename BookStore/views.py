@@ -5,6 +5,8 @@ from BookStore.models import *
 from django.contrib import auth
 from OnlineStore import settings
 from django.template import RequestContext
+#from django.http import HttpResponseRedirect
+#from django.core.urlresolvers import reverse
 
 # Create your views here.
 
@@ -20,18 +22,24 @@ def global_settings(request):
 
 
 def index(request):
+    #取出书籍信息
+    bookname = Book.objects.values()
+    print bookname
     #验证登录
+    if request.user.is_authenticated():
+        user = request.user
+        return render_to_response('index.htm', locals())
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = auth.authenticate(username=username,password=password)
         if user is not None:
             auth.login(request, user)
-    #取出书籍信息
-    bookname = Book.objects.values()
+
     #bookimage = Book.objects.get(name='firstjavacode')['picture'][1:]
-    print settings.IMAGE_URL, bookname[2]['picture']
-    return render_to_response('index.html', locals(), context_instance=RequestContext(request) )
+    #print settings.IMAGE_URL, bookname[2]['picture']
+    return render_to_response('index.htm', locals())#, context_instance=RequestContext(request)
 
 
 def about(request):
@@ -40,8 +48,11 @@ def about(request):
 
 
 def cart(request):
-    form = LoginForm()
-    return render_to_response('cart.htm', {'form': form})
+    #验证登录
+    if request.user.is_authenticated():
+        user = request.user
+        return render_to_response('cart.htm', locals())
+    return render_to_response('cart.htm')
 
 
 def category(request):
@@ -70,7 +81,21 @@ def specials(request):
 
 
 def details(request):
-    form = LoginForm()
-    return render_to_response('details.htm', {'form': form})
+    #取出书籍信息
+    bookname = Book.objects.values()
+    #验证登录
+    if request.user.is_authenticated():
+        user = request.user
+        return render_to_response('details.htm', locals())
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = auth.authenticate(username=username,password=password)
+        if user is not None:
+            auth.login(request, user)
+
+    #print bookname[2]['desc']
+    #bookimage = Book.objects.get(name='firstjavacode')['picture'][1:]
+    return render_to_response('details.htm', locals())
 
 

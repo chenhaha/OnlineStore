@@ -4,7 +4,7 @@
 {% block menu %}
     <div id="menu">
       <ul>
-        <li class="selected"><a href="index.html">home</a></li>
+        <li class="selected"><a href="index.htm">home</a></li>
         <li><a href="about.htm">about us</a></li>
         <li><a href="category.htm">books</a></li>
         <li><a href="specials.htm">specials books</a></li>
@@ -16,19 +16,18 @@
     </div>
 {% endblock %}
 {% block left_content %}
-  <div class="crumb_nav"> <a href="index.html">home</a> &gt;&gt; product name </div>
-  <div class="title"><span class="title_icon"><img src={% static "images/bullet1.gif"%} alt="" title="" /></span>Product name</div>
+  <div class="crumb_nav"> <a href={% url 'index' %}>home</a> &gt;&gt; product name </div>
+  <div class="title"><span class="title_icon"><img src={% static "images/bullet1.gif"%} alt="" title="" /></span>{{ bookname.1.nickname }}</div>
   <div class="feat_prod_box_details">
-    <div class="prod_img"><a href="details.htm"><img src={% static "images/prod1.gif"%} alt="" title="" border="0" /></a> <br />
+    <div class="prod_img"><a href="details.htm"><img src={% static "images/firstjavacode.jpg"%} alt="" title="" border="0" /></a> <br />
       <br />
       <a href={% static "images/big_pic.jpg"%} rel="lightbox"><img src={% static "images/zoom.gif"%} alt="" title="" border="0" /></a> </div>
     <div class="prod_det_box">
       <div class="box_top"></div>
       <div class="box_center">
-        <div class="prod_title">Details</div>
-        <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.<br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. </p>
-        <div class="price"><strong>PRICE:</strong> <span class="red">100 $</span></div>
+        <div class="prod_title"> Details</div>
+        <p class="details">{{ bookname.1.desc }}</p>
+        <div class="price"><strong>PRICE:</strong> <span class="red">{{ bookname.2.price }} ¥</span></div>
         <div class="price"><strong>COLORS:</strong> <span class="colors"><img src={% static "images/color1.gif"%} alt="" title="" border="0" /></span> <span class="colors"><img src={% static "images/color2.gif"%} alt="" title="" border="0" /></span> <span class="colors"><img src={% static "images/color3.gif"%} alt="" title="" border="0" /></span> </div>
         <a href="details.htm" class="more"><img src={% static "images/order_now.gif"%} alt="" title="" border="0" /></a>
         <div class="clear"></div>
@@ -53,7 +52,7 @@
         </ul>
         <p class="more_details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. </p>
       </div>
-      <div style="display: none;         " class="tab" id="tab2">
+      <div style="display: none;" class="tab" id="tab2">
         <div class="new_prod_box"> <a href="details.htm">product name</a>
           <div class="new_prod_bg"> <a href="details.htm"><img src={% static "images/thumb1.gif"%} alt="" title="" class="thumb" border="0" /></a> </div>
         </div>
