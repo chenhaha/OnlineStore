@@ -9,6 +9,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     alipay = models.CharField(max_length=32, verbose_name='支付宝账号')
+    #mycart = models.ForeignKey('Cart', verbose_name='购物车',null=True)
 
     class Meta:
         ordering = ['-id']
@@ -35,3 +36,24 @@ class Book(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Cart(models.Model):
+    #bookname = models.CharField(max_length=128, verbose_name='书名')
+    cart_id = models.CharField(max_length=50,null=True)
+    date_added = models.DateTimeField(auto_now_add=True, verbose_name='添加日期')
+    quantity = models.IntegerField(default=1, verbose_name='数量')
+    book = models.ForeignKey('Book', unique=False, null=True)
+
+    class META:
+        db_table = 'cart_items'
+        ordering = ['date_added']
+
+    def total(self):
+        return self.quantity * self.book.price
+
+    def name(self):
+        return self.book.name
+
+    def __unicode__(self):
+        return '购物车'
