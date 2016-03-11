@@ -44,6 +44,7 @@ class Cart(models.Model):
     date_added = models.DateTimeField(auto_now_add=True, verbose_name='添加日期')
     quantity = models.IntegerField(default=1, verbose_name='数量')
     book = models.ForeignKey('Book', unique=False, null=True)
+    user = models.ForeignKey('User', unique=False, null=True)
 
     class META:
         db_table = 'cart_items'
