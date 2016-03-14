@@ -51,6 +51,10 @@ def cart(request):
     #验证登录
     if request.user.is_authenticated():
         user = request.user
+        carts = User.objects.get(username=user.username).cart_set.all()
+        ttotal = 0
+        for cart in carts:
+            ttotal += cart.total()
         return render_to_response('cart.htm', locals())
     return render_to_response('cart.htm')
 

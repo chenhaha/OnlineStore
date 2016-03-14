@@ -32,6 +32,7 @@ class Book(models.Model):
     height = models.PositiveIntegerField(default=100, verbose_name='高度')
 
     class META:
+        #app_label = u'myapp'
         ordering = ['name']
 
     def __unicode__(self):

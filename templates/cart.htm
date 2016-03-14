@@ -17,34 +17,26 @@
 {% block left_content %}
     <div class="title"><span class="title_icon"><img src={% static "images/bullet1.gif"%} alt="" title="" /></span>My cart</div>
     <div class="feat_prod_box_details">
-    <table class="cart_table">
+    <table class="cart_table" id="cart_table">
       <tr class="cart_title">
         <td>Book name</td>
         <td>Unit price</td>
         <td>Qty</td>
         <td>Total</td>
       </tr>
+        {% for cart in carts %}
       <tr>
-        <td>Books</td>
-        <td>100$</td>
-        <td>1</td>
-        <td>100$</td>
+        <td>{{ cart.book.name }}</td>
+        <td>{{ cart.book.price }}</td>
+        <td>{{ cart.quantity }}</td>
+        <td >{{ cart.total }}</td>
       </tr>
-      <tr>
-        <td>Books</td>
-        <td>100$</td>
-        <td>1</td>
-        <td>100$</td>
-      </tr>
-      <tr>
-        <td>Books</td>
-        <td>100$</td>
-        <td>1</td>
-        <td>100$</td>
-      </tr>
+        {% endfor %}
       <tr>
         <td colspan="3" class="cart_total"><span class="red">TOTAL SHIPPING:</span></td>
-        <td> 250$</td>
+          <td>
+          {{ ttotal }}
+        </td>
       </tr>
       <tr>
         <td colspan="3" class="cart_total"><span class="red">TOTAL:</span></td>
