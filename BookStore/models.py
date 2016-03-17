@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+import  uuid
 
 # Create your models here.
 from django.contrib.auth.models import AbstractUser
@@ -41,7 +42,7 @@ class Book(models.Model):
 
 class Cart(models.Model):
     #bookname = models.CharField(max_length=128, verbose_name='书名')
-    cart_id = models.CharField(max_length=50,null=True)
+    cart_id = models.UUIDField(primary_key=True,default=uuid.uuid1, editable=False)
     date_added = models.DateTimeField(auto_now_add=True, verbose_name='添加日期')
     quantity = models.IntegerField(default=1, verbose_name='数量')
     book = models.ForeignKey('Book', unique=False, null=True)
@@ -58,4 +59,4 @@ class Cart(models.Model):
         return self.book.name
 
     def __unicode__(self):
-        return '购物车'
+        return self.book.name

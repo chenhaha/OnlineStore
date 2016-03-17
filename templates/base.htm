@@ -49,8 +49,8 @@
       </form>
       <div class="cart">
         <div class="title"><span class="title_icon"><img src={% static "images/cart.gif"%} alt="" title="" /></span>My cart</div>
-        <div class="home_cart_content"> 3 x items | <span class="red">TOTAL: 100$</span> </div>
-        <a href="cart.htm" class="view_cart">view cart</a> </div>
+        <div class="home_cart_content"> {{ number }} x items | <span class="red">TOTAL: {{ ttotal }}￥</span> </div>
+        <a href={% url 'cart' %} class="view_cart">view cart</a> </div>
       <div class="title"><span class="title_icon"><img src={% static "images/bullet3.gif"%} alt="" title="" /></span>About Our Store</div>
       <div class="about">
         <p> <img src={% static "images/about.gif"%} alt="" title="" class="right" /> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. </p>

@@ -17,7 +17,7 @@
 {% endblock %}
 {% block left_content %}
   <div class="crumb_nav"> <a href={% url 'index' %}>home</a> &gt;&gt; product name </div>
-  <div class="title"><span class="title_icon"><img src={% static "images/bullet1.gif"%} alt="" title="" /></span>{{ bookname.1.nickname }}</div>
+  <div class="title"><span class="title_icon"><img src={% static "images/bullet1.gif"%} alt="" title="" /></span>{{ bookname.nickname }}</div>
   <div class="feat_prod_box_details">
     <div class="prod_img"><a href="details.htm"><img src={% static "images/firstjavacode.jpg"%} alt="" title="" border="0" /></a> <br />
       <br />
@@ -26,10 +26,10 @@
       <div class="box_top"></div>
       <div class="box_center">
         <div class="prod_title"> Details</div>
-        <p class="details">{{ bookname.1.desc }}</p>
-        <div class="price"><strong>PRICE:</strong> <span class="red">{{ bookname.2.price }} ¥</span></div>
+        <p class="details">{{ bookname.desc }}</p>
+        <div class="price"><strong>PRICE:</strong> <span class="red">{{ bookname.price }} ¥</span></div>
         <div class="price"><strong>COLORS:</strong> <span class="colors"><img src={% static "images/color1.gif"%} alt="" title="" border="0" /></span> <span class="colors"><img src={% static "images/color2.gif"%} alt="" title="" border="0" /></span> <span class="colors"><img src={% static "images/color3.gif"%} alt="" title="" border="0" /></span> </div>
-        <a href="details.htm" class="more"><img src={% static "images/order_now.gif"%} alt="" title="" border="0" /></a>
+        <a href="{% url 'to_cart' %}?{{ restring }}" class="more"><img src={% static "images/order_now.gif"%} alt="" title="" border="0" /></a>
         <div class="clear"></div>
       </div>
       <div class="box_bottom"></div>

@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<div id="pagination">
+   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery固定数据分页切换代码- xw素材网</title>
+<!--可无视-->
+<link rel="stylesheet" type="text/css" href={% static "css/base.css" %}/>
+<!--主要样式-->
+<link rel="stylesheet" type="text/css" href={% static "css/pageGroup.css" %}/>
+<script type="text/javascript" src={% static "js/jquery-1.8.3.min.js"%}></script>
+<script type="text/javascript" src={% static "js/pageGroup.js"%}></script>
+</head>
+<body>
+<!-------------------------------------------分页----------------------------------------------------------------->
+<div id="pageGro" class="cb">
+	<div class="pageUp">上一页</div>
+    <div class="pageList">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <div class="pageDown">下一页</div>
+</div>
+<!-------------------------------------------END 分页----------------------------------------------------------------->
+<div style="text-align:center;margin:150px 0; font:normal 14px/24px 'MicroSoft YaHei';clear:both;">
+
+</div>
+</body>
+</html>
+
+</div>

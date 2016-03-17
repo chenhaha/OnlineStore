@@ -24,7 +24,7 @@
           <div class="box_center">
             <div class="prod_title">{{ bookname.2.nickname }}</div>
             <p class="details">{{ bookname.2.desc }}</p>
-            <a href={% url 'details' %} class="more">- more details -</a>
+            <a href="{% url 'details' %}?name={{ bookname.2.nickname }}" class="more">- more details -</a>
             <div class="clear"></div>
           </div>
           <div class="box_bottom"></div>
@@ -38,7 +38,7 @@
           <div class="box_center">
             <div class="prod_title">{{ bookname.1.nickname }}</div>
             <p class="details">{{ bookname.1.desc }}</p>
-            <a href="details.htm" class="more">- more details -</a>
+            <a href="{% url 'details' %}?name={{ bookname.1.nickname }}" class="more">- more details -</a>
             <div class="clear"></div>
           </div>
           <div class="box_bottom"></div>
