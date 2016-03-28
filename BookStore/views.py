@@ -4,10 +4,11 @@ from django import forms
 from BookStore.models import *
 from django.contrib import auth
 from OnlineStore import settings
-from django.core.paginator import Paginator,InvalidPage,EmptyPage,PageNotAnInteger
+from django.core.paginator import Paginator,InvalidPage, EmptyPage, PageNotAnInteger
 from django.template import RequestContext
-#from django.http import HttpResponseRedirect
-#from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 
@@ -43,7 +44,8 @@ def index(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = auth.authenticate(username=username,password=password)
+        user = auth.authenticate(username=username, password=password)
+        print user.backend
         if user is not None:
             auth.login(request, user)
 
@@ -61,16 +63,16 @@ def cart(request):
     #验证登录
     if request.user.is_authenticated():
         user = request.user
-        carts = User.objects.get(username=user.username).cart_set.all()
+        carts_all = User.objects.get(username=user.username).cart_set.all()
         ttotal = 0
         number = 0
-        paginator = Paginator(carts, 2)
+        paginator = Paginator(carts_all, 2)
         try:
             page = int(request.GET.get('page', 1))
             carts = paginator.page(page)
         except (EmptyPage, InvalidPage, PageNotAnInteger):
             carts = paginator.page(1)
-        for cart in carts:
+        for cart in carts_all:
             ttotal += cart.total()
             number += 1
         return render_to_response('cart.htm', locals())
@@ -93,8 +95,22 @@ def myaccount(request):
 
 
 def register(request):
-    form = LoginForm()
-    return render_to_response('register.htm', {'form': form})
+    state = None
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        password = make_password(request.POST.get('password', ''))
+        print username, password
+        if User.objects.filter(username=username):
+            state = 'user_exist'
+            return render_to_response('register.htm', locals())
+        else:
+            new_user = User.objects.create(username=username, password=password)
+            new_user.save()
+            new_user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
+            auth.login(request, new_user)
+            return HttpResponseRedirect(reverse('index'))
+    else:
+        return render_to_response('register.htm', locals())
 
 
 def specials(request):
@@ -145,6 +161,10 @@ def to_cart(request):           #加入购物车
 
     return redirect(request.META['HTTP_REFERER'])
 
+
+def do_logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 

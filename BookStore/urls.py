@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^specials/$', views.specials, name='specials'),
     url(r'^details/$', views.details, name='details'),
     url(r'^tocart/$', views.to_cart, name='to_cart'),
+    url(r'^logout/$', views.do_logout, name='do_logout')
 ]
