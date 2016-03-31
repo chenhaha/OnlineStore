@@ -15,5 +15,8 @@ urlpatterns = [
     url(r'^specials/$', views.specials, name='specials'),
     url(r'^details/$', views.details, name='details'),
     url(r'^tocart/$', views.to_cart, name='to_cart'),
-    url(r'^logout/$', views.do_logout, name='do_logout')
+    url(r'^logout/$', views.do_logout, name='do_logout'),
+    url(r'^tryajax/$', views.try_ajax, name='try_ajax'),
+    url(r'^tryajax/keyword/$', views.keyword, name='keyword'),
+
 ]

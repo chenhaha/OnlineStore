@@ -6,9 +6,11 @@ from django.contrib import auth
 from OnlineStore import settings
 from django.core.paginator import Paginator,InvalidPage, EmptyPage, PageNotAnInteger
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.hashers import make_password
+from django.core import serializers
+import json
 
 # Create your views here.
 
@@ -165,6 +167,20 @@ def to_cart(request):           #加入购物车
 def do_logout(request):
     auth.logout(request)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def try_ajax(request):
+    return render_to_response('ajax_test.html')
+
+
+def keyword(request):
+    keywords = request.GET.get('keyword', '')
+    #booknames = serializers.serialize('json', Book.objects.filter(nickname__icontains=keywords))
+    #booknames = HttpResponse(booknames)
+    booknames = []
+    for book in Book.objects.filter(name__istartswith=keywords):
+        booknames.append(book.name)
+    return HttpResponse(json.dumps(booknames))
 
 
 
